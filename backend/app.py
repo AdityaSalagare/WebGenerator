@@ -72,9 +72,10 @@ def generate():
 
     with open(f'website/styles.css', 'w') as f:
         f.write("""
-        body {
+body {
+    width: 80%;
+    margin: 0 auto;
     font-family: 'Arial', sans-serif;
-    margin: 0;
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
@@ -113,6 +114,7 @@ ul {
 }
 
 li {
+    text-align: center;
     background: #e7f1ff;
     margin: 10px 0;
     padding: 10px;

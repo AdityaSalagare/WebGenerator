@@ -1,0 +1,51 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="styles.css">
+            <title>sefc1</title>
+        </head>
+        <body>
+            <h1>sefc1</h1>
+            <p>srgvd1</p>
+            <h2>Features</h2>
+            <ul>
+                <li>argbv</li><li>dxrg</li><li>dfth1</li>
+            </ul>
+            <h2>Gallery</h2>
+            <div class="gallery">
+                <div class="slider">
+                    <div class="slide"><img src="https://img.freepik.com/free-photo/observation-urban-building-business-steel_1127-2397.jpg" alt="Gallery Image" /></div><div class="slide"><img src="https://img.freepik.com/free-vector/city-skyline-concept-illustration_114360-8923.jpg" alt="Gallery Image" /></div>
+                </div>
+                <button class="prev" onclick="prevSlide()">&#10094 ;</button>
+                <button class="next" onclick="nextSlide()">&#10095;</button>
+            </div>
+            <script>
+                var currentIndex = 0;
+                var slides = document.querySelectorAll('.slide');
+                var totalSlides = slides.length;
+
+                function showSlide(index) {
+                    for (var i = 0; i < totalSlides; i++) {
+                        slides[i].style.display = (i === index) ? 'block' : 'none';
+                    }
+                }
+
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    showSlide(currentIndex);
+                }
+
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    showSlide(currentIndex);
+                }
+
+                showSlide(currentIndex);
+                setInterval(nextSlide, 3000); // Change slide every 3 seconds
+            </script>
+        </body>
+        </html>
+        
