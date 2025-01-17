@@ -12,17 +12,19 @@ const Form = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setNotification(''); //  TO Clear previous notifications
+        setNotification(''); // Clear previous notifications
     
         try {
-            const response = await axios.post('http://localhost:5000/generate', {
-                buildingName,
-                description,
-                features,
-                images: images.split(',')
-            });
+            const response = await axios.post(
+                `${process.env.REACT_APP_BACKEND_URL}/generate`, // Use the backend URL from environment variables
+                {
+                    buildingName,
+                    description,
+                    features,
+                    images: images.split(',')
+                }
+            );
     
-            // the download link OR NOT
             if (response.data && response.data.download_link) {
                 setPreview(response.data.download_link);
             } else {
@@ -46,19 +48,23 @@ const Form = () => {
             <textarea
                 placeholder="Description"
                 value={description}
-                onChange={(e) => setDescription(e.target.value)} required/>
+                onChange={(e) => setDescription(e.target.value)}
+                required
+            />
             <input
                 type="text"
                 placeholder="Features (comma separated)"
                 value={features}
-                onChange={(e) => setFeatures(e.target.value)} required/>
+                onChange={(e) => setFeatures(e.target.value)}
+                required
+            />
             <input
                 type="text"
                 placeholder="Image URLs (comma separated)"
                 value={images}
                 onChange={(e) => setImages(e.target.value)}
-                required/>
-
+                required
+            />
             <button type="submit">Generate Website</button>
             {preview && <a href={preview} download>Download Website</a>}
             {notification && <p>{notification}</p>}

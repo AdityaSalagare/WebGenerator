@@ -4,7 +4,7 @@ import os
 import zipfile
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["*"])  # Allow requests from any origin
 
 os.makedirs('static', exist_ok=True)
 
@@ -196,7 +196,8 @@ li {
                 if file.endswith(".html") or file.endswith(".css"):
                     zipf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), 'website'))
 #download link
-    return jsonify({'download_link': f'http://localhost:5000/{zip_filename}'})
+    base_url = os.environ.get("RENDER_EXTERNAL_URL", "http://localhost:5000")
+    return jsonify({'download_link': f'{base_url}/static/website.zip'})
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
