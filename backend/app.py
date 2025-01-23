@@ -12,10 +12,7 @@ os.makedirs('static', exist_ok=True)
 def generate():
     data = request.json
     building_name = data['buildingName']
-    template = data['template']
     description = data['description']
-    features = data['features'].split(',')
-    images = data['images']
 # Create html+css
     os.makedirs('website', exist_ok=True)
     with open(f'website/index.html', 'w') as f:
