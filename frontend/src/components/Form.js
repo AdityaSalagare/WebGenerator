@@ -21,9 +21,6 @@ const Form = () => {
                 {
                     buildingName,
                     description,
-                    features,
-                    images: images.split(','),
-                    template // Include selected template in the request
                 }
             );
     
@@ -55,10 +52,7 @@ const Form = () => {
             />
            
            
-            <select value={template} onChange={(e) => setTemplate(e.target.value)} required>
-                <option value="default">Default Template</option>
-                <option value="modern">Modern Template</option>
-            </select>
+            
             <button type="submit">Generate Website</button>
             {preview && <a href={preview} download>Download Website</a>}
             {notification && <p>{notification}</p>}
