@@ -5,8 +5,9 @@ import './Form.css';
 const Form = () => {
     const [buildingName, setBuildingName] = useState(''); 
     const [description, setDescription] = useState('');
-    const [features, setFeatures] = useState('');
-    const [images, setImages] = useState('');
+    const [features, setFeatures] = useState(''); // Added for features input
+    const [images, setImages] = useState(''); // Added for images input
+    const [template, setTemplate] = useState('template1'); // Default template
     const [preview, setPreview] = useState('');
     const [notification, setNotification] = useState('');
 
@@ -21,7 +22,8 @@ const Form = () => {
                     buildingName,
                     description,
                     features,
-                    images: images.split(',')
+                    images: images.split(','),
+                    template // Include selected template in the request
                 }
             );
     
@@ -40,31 +42,23 @@ const Form = () => {
         <form onSubmit={handleSubmit}>
             <input
                 type="text"
-                placeholder="Building Name"
+                placeholder="Company Name"
                 value={buildingName}
                 onChange={(e) => setBuildingName(e.target.value)}
                 required
             />
             <textarea
-                placeholder="Description"
+                placeholder="Abstract description about the company"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 required
             />
-            <input
-                type="text"
-                placeholder="Features (comma separated)"
-                value={features}
-                onChange={(e) => setFeatures(e.target.value)}
-                required
-            />
-            <input
-                type="text"
-                placeholder="Image URLs (comma separated)"
-                value={images}
-                onChange={(e) => setImages(e.target.value)}
-                required
-            />
+           
+           
+            <select value={template} onChange={(e) => setTemplate(e.target.value)} required>
+                <option value="default">Default Template</option>
+                <option value="modern">Modern Template</option>
+            </select>
             <button type="submit">Generate Website</button>
             {preview && <a href={preview} download>Download Website</a>}
             {notification && <p>{notification}</p>}
