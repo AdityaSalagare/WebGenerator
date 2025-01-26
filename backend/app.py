@@ -54,14 +54,12 @@ def generate():
     with open('website/index.html', 'w') as f:
         f.write(rendered_html)
 #zip file
-    zip_filename = 'static/website.zip'
-    if os.path.exists('static/website.zip'):
-        os.remove('static/website.zip')
+    zip_filename = 'static/website.zip'  
     with zipfile.ZipFile(zip_filename, 'w') as zipf:
         for root, dirs, files in os.walk('website'):
             for file in files:
-                zipf.write(os.path.join(root, file),
-                           os.path.relpath(os.path.join(root, file), 'website'))
+                if file.endswith(".html") or file.endswith(".css"):
+                    zipf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), 'website'))
     shutil.rmtree('website')            
                 
 #download link
