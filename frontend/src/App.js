@@ -5,7 +5,7 @@ import Form from './components/Form';
 const App = () => {
     return (
         <div>
-            <h1>Construction Site Website Generator</h1>
+            <h1 style={{ textAlign: 'center' }}>Construction Site Website Generator</h1>
             <Form />
         </div>
     );

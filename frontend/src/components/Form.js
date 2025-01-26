@@ -40,6 +40,7 @@ const Form = () => {
         formData.append('companyName', companyName);
         formData.append('description', description);
         formData.append('template', template);
+        console.log(template);
 
         // Append project data
         projects.forEach((project, index) => {
